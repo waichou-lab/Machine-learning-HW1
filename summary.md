@@ -8,20 +8,20 @@ Task1: Fashion MNIST Classification (Pages 298-307)\
 | 30    | 0.9211 | 0.8978 | 0.2839 |\
 模型穩定學習中，沒有明顯 overfitting（訓練與驗證準確率接近）。\
 最後 epoch 的驗證準確率約 0.898，非常合理。(合理範圍約在89–90%之間)\
-驗證損失下降平滑，說明學習率適中、模型穩定。\
+驗證損失下降平滑，說明學習率適中、模型穩定。
 \
 測試集表現:\
 Test loss: 60.5007\
 Test accuracy: 0.8542\
 測試準確率 (0.8542) 明顯低於驗證準確率 (0.8978)。\
-→ 這代表模型在測試資料上泛化能力稍差\
+→ 這代表模型在測試資料上泛化能力稍差
 \
 模型預測分析:\
 Predicted probabilities (first instance):\
   Ankle boot: 100.00%\
 Predicted classes: ['Ankle boot', 'Pullover', 'Trouser']\
 Actual classes: ['Ankle boot', 'Pullover', 'Trouser']\
-表示預測信心非常高(100%正確)\
+表示預測信心非常高(100%正確)
 \
 而我們可以畫出一張圖片:\
 ![image](Figure_1.png)\
@@ -32,7 +32,7 @@ Actual classes: ['Ankle boot', 'Pullover', 'Trouser']\
 可以看到以下三點：\
 (1)一開始兩者都快速上升（模型開始學會辨識衣服特徵）；\
 (2)到第 10–30 epoch，兩條線都穩定在 0.88–0.90 之間；\
-(3)兩條線非常接近 → 幾乎沒有明顯 overfitting。\
+(3)兩條線非常接近 → 幾乎沒有明顯 overfitting。
 
 解讀：\
 模型泛化能力良好，沒有過擬合；這代表模型容量（hidden layer 大小）與資料量匹配得當。\
@@ -44,8 +44,7 @@ Actual classes: ['Ankle boot', 'Pullover', 'Trouser']\
 一開始損失很高（>0.5），隨著訓練下降迅速；\
 (1)訓練損失穩定下降到 ~0.2；\
 (2)驗證損失 (紅線) 在中後期下降速度變慢，甚至有輕微上下波動；\
-但沒有出現典型的 “驗證損失反彈” → 也就是沒過擬合。\
-
+但沒有出現典型的 “驗證損失反彈” → 也就是沒過擬合。
 解讀：\
 模型學習穩定，學習率設定良好。\
 紅線略高於橘線是正常現象（泛化誤差）。\
