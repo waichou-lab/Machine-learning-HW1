@@ -1,5 +1,5 @@
 ============================================================
-TASK 1: FASHION MNIST CLASSIFICATION
+TASK 1: FASHION MNIST CLASSIFICATION\
 ============================================================
 
 1. Loading Fashion MNIST dataset...
