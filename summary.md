@@ -15,32 +15,32 @@ Test loss: 60.5007\
 Test accuracy: 0.8542\
 測試準確率 (0.8542) 明顯低於驗證準確率 (0.8978)。\
 → 這代表模型在測試資料上泛化能力稍差\
+\
+模型預測分析:\
+Predicted probabilities (first instance):\
+  Ankle boot: 100.00%\
+Predicted classes: ['Ankle boot', 'Pullover', 'Trouser']\
+Actual classes: ['Ankle boot', 'Pullover', 'Trouser']\
+表示預測信心非常高(100%正確)\
+\
+而我們可以畫出一張圖片:\
+![image](Figure_1.png)\
+而我們將對圖片進行解讀:\
+訓練與驗證準確率（accuracy vs val_accuracy）\
+藍線 (accuracy)：訓練集準確率\
+綠線 (val_accuracy)：驗證集準確率\
+可以看到以下三點：\
+(1)一開始兩者都快速上升（模型開始學會辨識衣服特徵）；\
+(2)到第 10–30 epoch，兩條線都穩定在 0.88–0.90 之間；\
+(3)兩條線非常接近 → 幾乎沒有明顯 overfitting。\
 
-模型預測分析:
-Predicted probabilities (first instance):
-  Ankle boot: 100.00%
-Predicted classes: ['Ankle boot', 'Pullover', 'Trouser']
-Actual classes: ['Ankle boot', 'Pullover', 'Trouser']
-表示預測信心非常高(100%正確)
-
-而我們可以畫出一張圖片:
-![image](Figure_1.png)
-而我們將對圖片進行解讀:
-訓練與驗證準確率（accuracy vs val_accuracy）
-藍線 (accuracy)：訓練集準確率
-綠線 (val_accuracy)：驗證集準確率
-可以看到以下三點：
-(1)一開始兩者都快速上升（模型開始學會辨識衣服特徵）；
-(2)到第 10–30 epoch，兩條線都穩定在 0.88–0.90 之間；
-(3)兩條線非常接近 → 幾乎沒有明顯 overfitting。
-
-解讀：
-模型泛化能力良好，沒有過擬合；這代表模型容量（hidden layer 大小）與資料量匹配得當。
-訓練與驗證損失（loss vs val_loss）
+解讀：\
+模型泛化能力良好，沒有過擬合；這代表模型容量（hidden layer 大小）與資料量匹配得當。\
+訓練與驗證損失（loss vs val_loss）\
 --------------------------------------------------------------------
-橘線 (loss)：訓練集損失
-紅線 (val_loss)：驗證集損失
-可以看到：
+橘線 (loss)：訓練集損失\
+紅線 (val_loss)：驗證集損失\
+可以看到：\
 一開始損失很高（>0.5），隨著訓練下降迅速；
 (1)訓練損失穩定下降到 ~0.2；
 (2)驗證損失 (紅線) 在中後期下降速度變慢，甚至有輕微上下波動；
