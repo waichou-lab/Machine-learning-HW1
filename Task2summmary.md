@@ -7,7 +7,7 @@ Test	5,160	8
 數據分割合理，典型 60/20/20 分配。\
 這是加州房價資料集常見的配置。
 
-🧠 二、模型架構比較\
+二、模型架構比較\
 模型	結構	參數量	特點\
 Sequential	Dense(30, ReLU) → Dense(1)	301	單純線性堆疊、訓練穩定\
 Wide & Deep	(Input → Dense(30→30)) + Concatenate(Input) → Dense(1)	1,239	同時結合「原始特徵」與「深層特徵」\
@@ -39,7 +39,7 @@ Epoch	訓練損失	驗證損失\
 15	0.443	0.483\
 20	0.413	0.471
 
-🔍 分析：
+分析：
 
 學習曲線穩定，沒有明顯發散；
 
@@ -47,26 +47,28 @@ val_loss 明顯下降，但最終停在 0.4–0.47 附近；
 
 沒有像 Sequential 那樣降得那麼低（0.33）。
 
-✅ 最終：
+最終：
 
 Test MSE ≈ 0.4063
 
 表現略差於 Sequential 模型。
 
-📊 四、模型比較\
-指標	Sequential	Wide & Deep	哪個比較好\
-訓練穩定度	較不穩定（中期 loss 爆高）	穩定	⚖️ 平手\
-最終驗證損失	約 0.33	約 0.41	 Sequential\
-測試 MSE	0.3508	0.4063	 Sequential\
-模型參數量	301	1,239	✅ Sequential（更小）\
-泛化能力	中上	中等	✅ Sequential\
+四、模型比較\
+| 指標       |         Sequential       | Wide & Deep |     哪個比較好   |\
+| ------     | ----------------        | ----------- | -------------    |\
+| 訓練穩定度  | 較不穩定（中期 loss 爆高) |   穩定      |        平手      |\
+| 最終驗證損失| 約 0.33                  | 約 0.41     |  Sequential     |\
+| 測試 MSE   | 0.3508                   | 0.4063      |  Sequential     |\
+| 模型參數量 | 301                       | 1,239      |  Sequential（更小)|\
+| 泛化能力   | 中上                      | 中等        |  Sequential     |\
 
-💡 結論：
+
+結論：
 
 在這組資料上，「簡單的 Sequential 模型」表現反而比 Wide & Deep 更好。
 
-🧾 五、預測結果對照
-Sequential model predictions: [0.763, 1.673, 4.249]
+五、預測結果對照\
+Sequential model predictions: [0.763, 1.673, 4.249]\
 Actual values:                [0.477, 0.458, 5.000]
 
 
@@ -78,12 +80,10 @@ Actual values:                [0.477, 0.458, 5.000]
 
 第 3 筆：預測 4.25 vs 實際 5.00 → 低估。
 
-這反映出典型的現象：
-
-模型傾向「平均化」預測，對於極高或極低價格會拉回中間。
+模型傾向「平均化」預測，對於極高或極低價格會拉回中間。\
 屬於 典型的線性迴歸偏差現象。
 
-🧮 六、模型行為解釋
+六、模型行為解釋
 
 Sequential 模型表現較佳的原因：
 
@@ -101,42 +101,10 @@ Wide & Deep 模型略差的原因：
 
 學習率可能偏高。
 
-🔧 七、改進建議
+七、整體結論\
+模型	MSE	評價\
+Sequential	0.3508	 表現最佳、結構簡潔、泛化良好\
+Wide & Deep	0.4063	 表現略差、可能過擬合或干擾
 
-若想進一步提升房價預測表現：
-
-資料標準化
-
-from sklearn.preprocessing import StandardScaler
-scaler = StandardScaler()
-X_train_scaled = scaler.fit_transform(X_train)
-X_valid_scaled = scaler.transform(X_valid)
-X_test_scaled = scaler.transform(X_test)
-
-
-加入正則化
-
-keras.layers.Dense(30, activation="relu", kernel_regularizer=keras.regularizers.l2(0.01))
-
-
-使用 EarlyStopping
-
-early_stopping_cb = keras.callbacks.EarlyStopping(patience=5, restore_best_weights=True)
-
-
-嘗試更深層結構（2~3 層 Hidden）
-小心監控 validation loss，避免過擬合。
-
-考慮使用 “Feature Engineering”
-
-比如人口密度、收入與房屋年齡交互項；
-
-可讓 Wide & Deep 模型更有發揮空間。
-
-✅ 八、整體結論
-模型	MSE	評價
-Sequential	0.3508	✅ 表現最佳、結構簡潔、泛化良好
-Wide & Deep	0.4063	⚠️ 表現略差、可能過擬合或干擾
-
-👉 在這個任務中，簡單的模型反而更好。
+在這個任務中，簡單的模型反而更好。\
 因為資料維度低、特徵間關係線性為主，過度複雜的結構會降低效能。
