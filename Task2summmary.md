@@ -60,7 +60,7 @@ Test MSE ≈ 0.4063
 | 最終驗證損失| 約 0.33                  | 約 0.41     |  Sequential     |\
 | 測試 MSE   | 0.3508                   | 0.4063      |  Sequential     |\
 | 模型參數量 | 301                       | 1,239      |  Sequential（更小)|\
-| 泛化能力   | 中上                      | 中等        |  Sequential     |\
+| 泛化能力   | 中上                      | 中等        |  Sequential     |
 
 
 結論：
