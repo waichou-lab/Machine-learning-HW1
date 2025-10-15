@@ -24,7 +24,7 @@ Actual classes: ['Ankle boot', 'Pullover', 'Trouser']\
 表示預測信心非常高(100%正確)
 \
 而我們可以畫出一張圖片:\
-![image](Figure_1.png)\
+![image](img/Figure_1.png)\
 而我們將對圖片進行解讀:\
 訓練與驗證準確率（accuracy vs val_accuracy）\
 藍線 (accuracy)：訓練集準確率\
